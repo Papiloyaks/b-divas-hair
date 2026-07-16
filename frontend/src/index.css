@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary-dark: #0F0F0F;
+  --color-luxury-gold: #D4AF37;
+  --color-bg-cream: #FFF8F0;
+  --color-card-white: #FFFFFF;
+  --color-accent-brown: #6B4F4F;
+  --color-soft-cream: #F7E7CE;
+
+  --font-display: "Playfair Display", serif;
+  --font-body: "Poppins", sans-serif;
+}
+
+body {
+  background-color: var(--color-bg-cream);
+  color: var(--color-primary-dark);
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+}
