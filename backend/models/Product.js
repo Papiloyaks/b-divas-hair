@@ -24,7 +24,7 @@ const productSchema = new mongoose.Schema(
     length: { type: String }, // e.g. "18 inches"
     color: { type: String },
     texture: { type: String }, // e.g. "straight", "curly", "wavy"
-    vendor: { type: String, default: "B-Diva's Hair" },
+    vendor: { type: String, default: "BDIVA Hair" },
     stock: { type: Number, required: true, default: 0 },
     images: [
       {
