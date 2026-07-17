@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-10">
         <div>
           <h3 className="font-display text-xl text-[#D4AF37] mb-4">
-            B-Diva's Hair
+            BDIVA Hair
           </h3>
           <p className="text-sm text-[#F7E7CE]/70">
             Luxury Hair, Luxury Confidence. Premium hair vendor for the modern queen.
@@ -43,7 +43,7 @@ const Footer = () => {
       </div>
 
       <div className="text-center text-xs text-[#F7E7CE]/50 mt-12">
-        © {new Date().getFullYear()} B-Diva's Hair. All rights reserved.
+        © {new Date().getFullYear()} BDIVA Hair. All rights reserved.
       </div>
     </footer>
   );

@@ -38,7 +38,7 @@ const BrandLogo = ({ className = "" }) => {
       </svg>
 
       <span className="font-display text-2xl tracking-wide leading-none">
-        B-Diva<span className="text-[#D4AF37]">'s</span>
+        BDIVA<span className="text-[#D4AF37]"></span>
         <span className="block text-[0.55em] tracking-[0.35em] font-body font-normal uppercase mt-0.5">
           Hair
         </span>
