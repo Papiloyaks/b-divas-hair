@@ -21,7 +21,7 @@ const Home = () => {
       </section>
 
       <section className="bg-[#F7E7CE] py-24 px-6 text-center">
-        <h2 className="text-3xl mb-10">Why Choose B-Diva's</h2>
+        <h2 className="text-3xl mb-10">Why Choose BDIVA</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
           <div>
             <h3 className="text-4xl text-[#D4AF37] font-bold">10,000+</h3>

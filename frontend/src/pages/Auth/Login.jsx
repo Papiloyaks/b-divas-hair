@@ -73,7 +73,7 @@ const Login = () => {
         </form>
 
         <p className="text-center text-sm text-[#6B4F4F] mt-6">
-          New to B-Diva's Hair?{" "}
+          New to BDIVA Hair?{" "}
           <Link to="/register" className="text-[#D4AF37] font-medium">
             Create an account
           </Link>

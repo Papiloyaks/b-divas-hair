@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
     slug: "luxury-bone-straight-wig",
     price: 85000,
     discountPrice: null,
-    images: [{ url: "https://placehold.co/400x500/0F0F0F/D4AF37?text=B-Diva%27s" }],
+    images: [{ url: "https://placehold.co/400x500/0F0F0F/D4AF37?text=BDIVA%20Hair" }],
     ratingsAverage: 4.5,
   };
   const item = product || demo;

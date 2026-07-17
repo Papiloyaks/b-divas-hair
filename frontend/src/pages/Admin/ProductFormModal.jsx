@@ -17,7 +17,7 @@ const emptyForm = {
   length: "",
   color: "",
   texture: "straight",
-  vendor: "B-Diva's Hair",
+  vendor: "BDIVA Hair",
   stock: "",
 };
 

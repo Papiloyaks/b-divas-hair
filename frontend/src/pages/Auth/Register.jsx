@@ -22,7 +22,7 @@ const Register = () => {
     setLoading(true);
     try {
       await register(form);
-      toast.success("Account created! Welcome to B-Diva's Hair.");
+      toast.success("Account created! Welcome to BDIVA Hair.");
       navigate("/dashboard");
     } catch (err) {
       toast.error(err.response?.data?.message || "Registration failed. Try again.");
@@ -40,7 +40,7 @@ const Register = () => {
       >
         <h1 className="font-display text-3xl text-center mb-2">Create Account</h1>
         <p className="text-center text-[#6B4F4F] text-sm mb-8">
-          Join B-Diva's Hair for faster checkout and order tracking
+          Join BDIVA Hair for faster checkout and order tracking
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">

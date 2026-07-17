@@ -36,9 +36,9 @@ const ProductDetails = () => {
           stock: 12,
           ratingsAverage: 4.8,
           images: [
-            { url: "https://placehold.co/600x750/0F0F0F/D4AF37?text=B-Diva%27s+1" },
-            { url: "https://placehold.co/600x750/6B4F4F/F7E7CE?text=B-Diva%27s+2" },
-            { url: "https://placehold.co/600x750/D4AF37/0F0F0F?text=B-Diva%27s+3" },
+            { url: "https://placehold.co/600x750/0F0F0F/D4AF37?text=BDIVA%20Hair+1" },
+            { url: "https://placehold.co/600x750/6B4F4F/F7E7CE?text=BDIVA%20Hair+2" },
+            { url: "https://placehold.co/600x750/D4AF37/0F0F0F?text=BDIVA%20Hair+3" },
           ],
           reviews: [
             { _id: "1", user: { name: "Amaka O." }, rating: 5, comment: "Melted into my skin perfectly, super soft strands." },

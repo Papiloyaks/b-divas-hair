@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { fadeUp, staggerContainer } from "../../animations/variants";
 
 const gallery = [
-  "https://placehold.co/500x600/0F0F0F/D4AF37?text=B-Diva%27s",
-  "https://placehold.co/500x600/6B4F4F/F7E7CE?text=B-Diva%27s",
-  "https://placehold.co/500x600/D4AF37/0F0F0F?text=B-Diva%27s",
-  "https://placehold.co/500x600/F7E7CE/0F0F0F?text=B-Diva%27s",
+  "https://placehold.co/500x600/0F0F0F/D4AF37?text=BDIVA%20Hair",
+  "https://placehold.co/500x600/6B4F4F/F7E7CE?text=BDIVA%20Hair",
+  "https://placehold.co/500x600/D4AF37/0F0F0F?text=BDIVA%20Hair",
+  "https://placehold.co/500x600/F7E7CE/0F0F0F?text=BDIVA%20Hair",
 ];
 
 const About = () => {
@@ -37,7 +37,7 @@ const About = () => {
           transition={{ delay: 0.2 }}
           className="text-[#6B4F4F] mt-6 leading-relaxed"
         >
-          B-Diva's Hair started with a simple frustration: too many "luxury" hair vendors sold
+          BDiva Hair started with a simple frustration: too many "luxury" hair vendors sold
           bundles that shed within weeks and wigs that never quite matched the photos. We set out
           to build something different — hair sourced directly from trusted vendors, tested for
           quality before it ever reaches a customer, and backed by a brand that treats every order
@@ -89,7 +89,7 @@ const About = () => {
             <motion.div key={i} variants={fadeUp} className="aspect-[5/6] overflow-hidden">
               <img
                 src={src}
-                alt="B-Diva's Hair gallery"
+                alt="BDIVA Hair gallery"
                 className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
               />
             </motion.div>
