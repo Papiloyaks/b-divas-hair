@@ -7,9 +7,9 @@ import { Link } from "react-router-dom";
 // here automatically. Until then, each slide gracefully falls back to a
 // brand-colored gradient so the Hero never looks broken.
 const SLIDES = [
-  { src: "public/hero/hero-1.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#3a2e1f" },
-  { src: "public/hero/hero-2.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#4a3728" },
-  { src: "public/hero/hero-3.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#2e2119" },
+  { src: "public/hero-1.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#3a2e1f" },
+  { src: "public/hero-2.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#4a3728" },
+  { src: "public/hero-3.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#2e2119" },
 ];
 
 const SLIDE_DURATION = 5000;
