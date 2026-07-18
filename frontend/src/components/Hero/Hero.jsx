@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
+import heroImage1 from "../../assets/hero/hero-1.jpg";
+import heroImage2 from "../../assets/hero/hero-2.jpg";
+import heroImage3 from "../../assets/hero/hero-3.jpg";
 
-// Drop your own photography into /frontend/public/hero/ using these exact
-// filenames (1920x1080 or larger, landscape, JPG/WebP) and they'll appear
-// here automatically. Until then, each slide gracefully falls back to a
-// brand-colored gradient so the Hero never looks broken.
+
 const SLIDES = [
-  { src: "public/hero-1.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#3a2e1f" },
-  { src: "public/hero-2.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#4a3728" },
-  { src: "public/hero-3.jpg", fallbackFrom: "#0F0F0F", fallbackTo: "#2e2119" },
+  { src: heroImage1, fallbackFrom: "#0F0F0F", fallbackTo: "#3a2e1f" },
+  { src: heroImage2, fallbackFrom: "#0F0F0F", fallbackTo: "#4a3728" },
+  { src: heroImage3, fallbackFrom: "#0F0F0F", fallbackTo: "#2e2119" },
 ];
 
 const SLIDE_DURATION = 5000;

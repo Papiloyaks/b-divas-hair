@@ -87,7 +87,7 @@ const Contact = () => {
 
           {/* Map placeholder — swap the src for a real Google Maps embed URL */}
           <div className="mt-8 aspect-video bg-[#F7E7CE] flex items-center justify-center text-[#6B4F4F] text-sm">
-            Map embed goes here (Google Maps iframe)
+            iframe placeholder for Google Maps embed (replace with actual map)
           </div>
         </motion.div>
 
