@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiShoppingBag, FiHeart, FiUser, FiMenu, FiX } from "react-icons/fi";
+import { FiShoppingBag, FiHeart, FiUser, FiMenu, FiX, FiLogOut, FiGrid, FiShield } from "react-icons/fi";
+import toast from "react-hot-toast";
 import { useCart } from "../../redux/CartContext";
 import { useWishlist } from "../../redux/WishlistContext";
 import { useAuth } from "../../hooks/useAuth";
@@ -10,16 +11,30 @@ import BrandLogo from "./BrandLogo";
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [accountMenuOpen, setAccountMenuOpen] = useState(false);
   const { itemCount } = useCart();
   const { items: wishlistItems } = useWishlist();
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
+  const accountMenuRef = useRef(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll);
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Close the account dropdown when clicking anywhere outside of it
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (accountMenuRef.current && !accountMenuRef.current.contains(e.target)) {
+        setAccountMenuOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   // Pages that don't open with a full-bleed dark Hero need a dark navbar
@@ -37,6 +52,14 @@ const Navbar = () => {
 
   const textColor = useDarkText ? "text-[#0F0F0F]" : "text-[#F7E7CE]";
 
+  const handleLogout = () => {
+    logout();
+    setAccountMenuOpen(false);
+    setMenuOpen(false);
+    toast.success("Logged out successfully");
+    navigate("/");
+  };
+
   return (
     <motion.nav
       initial={{ y: -80, opacity: 0 }}
@@ -51,9 +74,10 @@ const Navbar = () => {
       }`}
     >
       <div className={`max-w-7xl mx-auto px-6 flex items-center justify-between ${textColor}`}>
-          <Link to="/">
+        <Link to="/">
           <BrandLogo />
         </Link>
+
         <ul className="hidden md:flex gap-10 font-body text-sm tracking-wide">
           {links.map((link) => (
             <li key={link.name}>
@@ -86,11 +110,53 @@ const Navbar = () => {
           </button>
 
           {user ? (
-            <Link to="/dashboard" aria-label="Account"><FiUser size={20} /></Link>
+            <div className="relative" ref={accountMenuRef}>
+              <button
+                onClick={() => setAccountMenuOpen(!accountMenuOpen)}
+                aria-label="Account menu"
+                className="flex items-center"
+              >
+                <FiUser size={20} />
+              </button>
+
+              {accountMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: -8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="absolute right-0 mt-3 w-48 bg-white text-[#0F0F0F] border border-[#F7E7CE] shadow-lg py-2"
+                >
+                  <p className="px-4 py-2 text-xs text-[#6B4F4F] truncate border-b border-[#F7E7CE]">
+                    {user.name || user.email}
+                  </p>
+                  <Link
+                    to="/dashboard"
+                    onClick={() => setAccountMenuOpen(false)}
+                    className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-[#F7E7CE]/50"
+                  >
+                    <FiGrid size={14} /> Dashboard
+                  </Link>
+                  {user.role === "admin" && (
+                    <Link
+                      to="/admin"
+                      onClick={() => setAccountMenuOpen(false)}
+                      className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-[#F7E7CE]/50"
+                    >
+                      <FiShield size={14} /> Admin Dashboard
+                    </Link>
+                  )}
+                  <button
+                    onClick={handleLogout}
+                    className="w-full flex items-center gap-2 px-4 py-2 text-sm text-left hover:bg-[#F7E7CE]/50"
+                  >
+                    <FiLogOut size={14} /> Logout
+                  </button>
+                </motion.div>
+              )}
+            </div>
           ) : (
             <Link
               to="/login"
-              className="text-sm font-medium rounded-xl hover:text-white border border-current px-4 py-1.5 hover:bg-[#D4AF37] hover:text-[#0F0F0F] hover:border-[#D4AF37] transition-colors"
+              className="text-sm font-medium border border-current px-4 py-1.5 hover:bg-[#D4AF37] hover:text-[#0F0F0F] hover:border-[#D4AF37] transition-colors"
             >
               Login
             </Link>
@@ -119,11 +185,33 @@ const Navbar = () => {
               </Link>
             </li>
           ))}
-          <li>
-            <Link to={user ? "/dashboard" : "/login"} onClick={() => setMenuOpen(false)}>
-              {user ? "My Account" : "Login / Sign Up"}
-            </Link>
-          </li>
+          {user ? (
+            <>
+              <li>
+                <Link to="/dashboard" onClick={() => setMenuOpen(false)}>
+                  My Account
+                </Link>
+              </li>
+              {user.role === "admin" && (
+                <li>
+                  <Link to="/admin" onClick={() => setMenuOpen(false)}>
+                    Admin Dashboard
+                  </Link>
+                </li>
+              )}
+              <li>
+                <button onClick={handleLogout} className="text-left">
+                  Logout
+                </button>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link to="/login" onClick={() => setMenuOpen(false)}>
+                Login / Sign Up
+              </Link>
+            </li>
+          )}
         </motion.ul>
       )}
     </motion.nav>
