@@ -7,6 +7,7 @@ import Contact from "../pages/Contact/Contact";
 import Login from "../pages/Auth/Login";
 import Register from "../pages/Auth/Register";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import Privacy from "../pages/Privacy/Privacy";
 import Admin from "../pages/Admin/Admin";
 import Wishlist from "../pages/Wishlist/Wishlist";
 import Checkout from "../pages/Checkout/Checkout";
@@ -27,6 +28,7 @@ const AppRoutes = () => {
       <Route path="/wishlist" element={<Wishlist />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/order/verify" element={<OrderVerify />} />
+      <Route path="/privacy" element={<Privacy />} />
     </Routes>
   );
 };

@@ -39,7 +39,7 @@ const Navbar = () => {
 
   // Pages that don't open with a full-bleed dark Hero need a dark navbar
   // from the very first frame, otherwise text renders invisible on white.
-  const lightBackgroundPages = ["/shop", "/about", "/contact", "/login", "/register", "/dashboard", "/admin", "/product", "/wishlist", "/checkout", "/order"];
+  const lightBackgroundPages = ["/shop", "/about", "/contact", "/login", "/register", "/dashboard", "/admin", "/product", "/wishlist", "/checkout", "/order", "/privacy"];
   const isLightPage = lightBackgroundPages.some((path) => location.pathname.startsWith(path));
   const useDarkText = scrolled || isLightPage;
 

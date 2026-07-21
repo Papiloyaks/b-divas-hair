@@ -8,9 +8,13 @@ const userSchema = new mongoose.Schema(
     phone: { type: String },
     password: { type: String, required: true, minlength: 6 },
     role: { type: String, enum: ["customer", "admin"], default: "customer" },
-    avatar: {
+      avatar: {
       url: { type: String, default: "" },
       publicId: { type: String, default: "" },
+    },
+    preferences: {
+      emailOrderUpdates: { type: Boolean, default: true },
+      emailPromotions: { type: Boolean, default: true },
     },
   },
   { timestamps: true }

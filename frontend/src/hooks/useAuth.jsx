@@ -39,13 +39,20 @@ export const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  // Merges fresh fields into the current user without needing a re-login —
+  // used after editing profile details or preferences.
+  const updateUser = (updatedFields) => {
+    setUser((prev) => ({ ...prev, ...updatedFields }));
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, register, logout, isAdmin: user?.role === "admin" }}>
+    <AuthContext.Provider
+      value={{ user, loading, login, register, logout, updateUser, isAdmin: user?.role === "admin" }}
+    >
       {children}
     </AuthContext.Provider>
   );
 };
-
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) throw new Error("useAuth must be used within an AuthProvider");

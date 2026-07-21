@@ -1,14 +1,18 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FiPackage, FiClock, FiCheckCircle, FiUser, FiHeart, FiDownload } from "react-icons/fi";
+import { FiPackage, FiClock, FiCheckCircle, FiHeart, FiDownload } from "react-icons/fi";
 import { useAuth } from "../../hooks/useAuth";
+import { useWishlist } from "../../redux/WishlistContext";
 import { formatNaira } from "../../utils/helpers";
 import api from "../../services/api";
+import ProfileSettings from "./ProfileSettings";
 
 const TABS = ["Overview", "My Orders", "Profile", "Wishlist"];
 
 const Dashboard = () => {
   const { user } = useAuth();
+  const { items: wishlistItems } = useWishlist();
   const [activeTab, setActiveTab] = useState("Overview");
   const [orders, setOrders] = useState([]);
 
@@ -78,9 +82,9 @@ const Dashboard = () => {
           {orders.length === 0 ? (
             <p className="text-[#6B4F4F] text-center py-12">
               No orders yet.{" "}
-              <a href="/shop" className="text-[#D4AF37] underline">
+              <Link to="/shop" className="text-[#D4AF37] underline">
                 Start shopping
-              </a>
+              </Link>
             </p>
           ) : (
             orders.map((order) => (
@@ -101,30 +105,43 @@ const Dashboard = () => {
         </div>
       )}
 
-      {activeTab === "Profile" && (
-        <div className="max-w-md space-y-5">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 rounded-full bg-[#0F0F0F] text-[#D4AF37] flex items-center justify-center text-xl">
-              <FiUser size={24} />
-            </div>
-            <div>
-              <p className="font-medium">{user?.name || "Guest User"}</p>
-              <p className="text-sm text-[#6B4F4F]">{user?.email}</p>
-            </div>
-          </div>
-          <button className="px-6 py-3 border border-[#0F0F0F] hover:bg-[#0F0F0F] hover:text-white transition-colors text-sm">
-            Edit Details
-          </button>
-          <button className="px-6 py-3 border border-[#0F0F0F] hover:bg-[#0F0F0F] hover:text-white transition-colors text-sm ml-3">
-            Change Password
-          </button>
-        </div>
-      )}
+      {activeTab === "Profile" && <ProfileSettings />}
 
       {activeTab === "Wishlist" && (
-        <div className="text-center py-12 text-[#6B4F4F]">
-          <FiHeart size={32} className="mx-auto mb-3 opacity-40" />
-          <p>Your wishlist is empty. Save products from the shop to see them here.</p>
+        <div>
+          {wishlistItems.length === 0 ? (
+            <div className="text-center py-12 text-[#6B4F4F]">
+              <FiHeart size={32} className="mx-auto mb-3 opacity-40" />
+              <p>Your wishlist is empty. Save products from the shop to see them here.</p>
+              <Link to="/shop" className="inline-block mt-3 text-[#D4AF37] underline">
+                Browse the shop
+              </Link>
+            </div>
+          ) : (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+              {wishlistItems.map((item) => (
+                <Link
+                  key={item._id}
+                  to={`/product/${item.slug}`}
+                  className="border border-[#F7E7CE] overflow-hidden group"
+                >
+                  <div className="aspect-[4/5] bg-[#F7E7CE] overflow-hidden">
+                    <img
+                      src={item.images?.[0]?.url}
+                      alt={item.name}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                  </div>
+                  <div className="p-3">
+                    <p className="text-sm truncate">{item.name}</p>
+                    <p className="text-[#D4AF37] font-semibold text-sm mt-1">
+                      {formatNaira(item.discountPrice || item.price)}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>
